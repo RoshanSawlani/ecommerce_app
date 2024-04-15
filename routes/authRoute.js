@@ -7,4 +7,4 @@ const router = express.Router()
 // REGISTER || METHOD POST
 router.post('/register',registerController)
 
-export default router
+export default router 

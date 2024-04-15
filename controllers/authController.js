@@ -9,7 +9,7 @@ export const registerController = async(req,res)=>{
             return res.send({error:'Name is required'})
         }
         if(!email){
-            return res.send({error:'Email is required'})
+            return res.send({error:'Email is required'}) 
         }
         if(!password){
             return res.send({error:'Password is required'})
@@ -53,3 +53,4 @@ export const registerController = async(req,res)=>{
         })
     }
 }
+ 
