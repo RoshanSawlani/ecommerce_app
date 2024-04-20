@@ -2,14 +2,15 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { MdShoppingCart } from "react-icons/md";
 import { useAuth } from '../../context/auth';
-import toast from  'react-hot-toast'
+import toast from 'react-hot-toast'
+import Dashboard from './../../pages/user/Dashboard';
 
 const Header = () => {
-  const [auth,setAuth] = useAuth()
-  const handleLogout = () =>{
+  const [auth, setAuth] = useAuth()
+  const handleLogout = () => {
     setAuth({
       ...auth,
-      user:null,token:''
+      user: null, token: ''
     })
     localStorage.removeItem('auth')
     toast.success("Logout Successfully")
@@ -34,15 +35,23 @@ const Header = () => {
                 </li>
                 {
                   !auth.user ? (<>
-                  <li className="nav-item">
-                  <NavLink to="/register" className="nav-link" href="#">Register</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/login" className="nav-link" href="#">Login</NavLink>
-                </li></>) :(<>
-                  <li className="nav-item">
-                  <NavLink to="/login" onClick={handleLogout} className="nav-link" href="#">Logout</NavLink>
-                </li></>)
+                    <li className="nav-item">
+                      <NavLink to="/register" className="nav-link" href="#">Register</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/login" className="nav-link" href="#">Login</NavLink>
+                    </li></>) : (<>
+                      <li className="nav-item dropdown">
+                        <NavLink className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {auth?.user?.name}
+                        </NavLink>
+                        <ul className="dropdown-menu">
+                          <li><NavLink className="dropdown-item" to="/dashboard">Dashboard</NavLink></li>
+                          <li><NavLink to="/login" onClick={handleLogout} className="dropdown-item" href="#">Logout</NavLink></li>
+                        </ul>
+                      </li>
+
+                      </>)
                 }
                 <li className="nav-item">
                   <NavLink to="/cart" className="nav-link" href="#">Cart (0)</NavLink>
