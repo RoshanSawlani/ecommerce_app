@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
         ref:"Products",
     },],
     payment:{},
-    buyers:{
+    buyer:{
         type:mongoose.ObjectId,
         ref:"users"
     },
